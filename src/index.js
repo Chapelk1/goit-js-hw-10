@@ -1,4 +1,4 @@
-import catApi from './cat-api';
+import catApi from '/cat-api';
 import SlimSelect from 'slim-select';
 import Notiflix from 'notiflix';
 
