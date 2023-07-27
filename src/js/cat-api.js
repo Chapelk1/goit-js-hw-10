@@ -1,4 +1,23 @@
-export default function fetchBreeds() {
-     fetch('https://api.thecatapi.com/v1/breeds')
-       .then(r => r.json()).then(console.log);
-}
+const BASE_KEY =
+  'live_bfn1VCdo3QJCVCa7zKOB7k0BSO7PkMhrRgrQD1ygLJdMptjtpRK9U11YwB3RzW7p';
+
+import axios from 'axios';
+axios.defaults.headers.common['x-api-key'] = BASE_KEY;
+
+
+export default cat_api = {
+  fetchBreeds() {
+    return axios.get('https://api.thecatapi.com/v1/breeds').then(r => r.data);
+  },
+
+  fetchCatByBreed(breedId) {
+    return axios
+      .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
+      .then(response => response.data[0]);
+  },
+}; 
+
+
+
+
+
