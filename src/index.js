@@ -1,4 +1,4 @@
-import cat_api from './cat-api';
+import catApi from './cat-api';
 import SlimSelect from 'slim-select';
 import Notiflix from 'notiflix';
 
@@ -9,22 +9,22 @@ const refs = {
 };
 
 
-cat_api
+catApi
   .fetchBreeds()
   .then(response => {
     refs.selectEl.insertAdjacentHTML('beforeend', addOptionsInSelect(response));
     rmHidden(refs.selectEl);
-      hidden(refs.loader);
-      new SlimSelect({
-        select: refs.selectEl,
-        settings: {contentPosition: 'absolute'},
-      });
+    hidden(refs.loader);
+    new SlimSelect({
+      select: refs.selectEl,
+      settings: { contentPosition: 'absolute' },
+    });
   })
   .catch(error => {
-      hidden(refs.loader);
-      Notiflix.Notify.failure(
-        'Oops! Something went wrong! Try reloading the page!'
-      );
+    hidden(refs.loader);
+    Notiflix.Notify.failure(
+      'Oops! Something went wrong! Try reloading the page!'
+    );
   });
 
 function addOptionsInSelect(response) {
@@ -41,24 +41,22 @@ refs.selectEl.addEventListener('change', onChange);
 function onChange(e) {
     hidden(refs.selectEl);
     rmHidden(refs.loader);
-    cat_api.fetchCatByBreed(e.target.value)
-        .then(response => {
+    catApi
+      .fetchCatByBreed(e.target.value)
+      .then(response => {
         refs.listCats.innerHTML = '';
-        refs.listCats.insertAdjacentHTML(
-          'beforeend',
-          deployCard(response)
-        );
+        refs.listCats.insertAdjacentHTML('beforeend', deployCard(response));
         rmHidden(refs.selectEl);
         rmHidden(refs.listCats);
         hidden(refs.loader);
-        })
-        .catch(error => {
+      })
+      .catch(error => {
         rmHidden(refs.selectEl);
-            hidden(refs.loader);
-            Notiflix.Notify.failure(
-              'Oops! Something went wrong! Try reloading the page!'
-            );
-    });
+        hidden(refs.loader);
+        Notiflix.Notify.failure(
+          'Oops! Something went wrong! Try reloading the page!'
+        );
+      });
 };
 
 

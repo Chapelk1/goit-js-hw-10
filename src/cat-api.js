@@ -5,7 +5,7 @@ import axios from 'axios';
 axios.defaults.headers.common['x-api-key'] = BASE_KEY;
 
 
-export default cat_api = {
+export default catApi = {
   fetchBreeds() {
     return axios.get('https://api.thecatapi.com/v1/breeds').then(r => r.data);
   },
