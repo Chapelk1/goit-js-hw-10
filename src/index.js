@@ -1,4 +1,4 @@
-import catApi from './cat-api';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import Notiflix from 'notiflix';
 
@@ -8,9 +8,7 @@ const refs = {
   loader: document.querySelector('.loader-p'),
 };
 
-
-catApi
-  .fetchBreeds()
+  fetchBreeds()
   .then(response => {
     refs.selectEl.insertAdjacentHTML('beforeend', addOptionsInSelect(response));
     rmHidden(refs.selectEl);
@@ -41,8 +39,7 @@ refs.selectEl.addEventListener('change', onChange);
 function onChange(e) {
     hidden(refs.selectEl);
     rmHidden(refs.loader);
-    catApi
-      .fetchCatByBreed(e.target.value)
+    fetchCatByBreed(e.target.value)
       .then(response => {
         refs.listCats.innerHTML = '';
         refs.listCats.insertAdjacentHTML('beforeend', deployCard(response));
