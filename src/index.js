@@ -21,7 +21,10 @@ const refs = {
   .catch(error => {
     hidden(refs.loader);
     Notiflix.Notify.failure(
-      'Oops! Something went wrong! Try reloading the page!'
+      'Oops! Something went wrong! Try reloading the page!',
+      {
+        position: 'center-top',
+      }
     );
   });
 
@@ -52,7 +55,10 @@ function onChange(e) {
         rmHidden(refs.selectEl);
         hidden(refs.loader);
         Notiflix.Notify.failure(
-          'Oops! Something went wrong! Try reloading the page!'
+          'Oops! Something went wrong! Try reloading the page!',
+          {
+            position: 'center-top',
+          }
         );
       });
 };
