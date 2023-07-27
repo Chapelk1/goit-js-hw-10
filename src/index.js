@@ -39,6 +39,7 @@ refs.selectEl.addEventListener('change', onChange);
 function onChange(e) {
     hidden(refs.selectEl);
     rmHidden(refs.loader);
+    hidden(refs.listCats);
     fetchCatByBreed(e.target.value)
       .then(response => {
         refs.listCats.innerHTML = '';
