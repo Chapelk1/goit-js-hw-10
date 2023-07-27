@@ -1,4 +1,4 @@
-import cat_api from './js/cat-api';
+import cat_api from './cat-api';
 import SlimSelect from 'slim-select';
 import Notiflix from 'notiflix';
 
