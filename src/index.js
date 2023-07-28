@@ -1,7 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import Notiflix from 'notiflix';
-
+import 'slim-select/dist/slimselect.css';
 const refs = {
   selectEl: document.querySelector('.breed-select'),
   listCats: document.querySelector('.cat-info'),
@@ -40,19 +40,20 @@ refs.selectEl.addEventListener('change', onChange);
 
 
 function onChange(e) {
-    hidden(refs.selectEl);
+  const selSecond = document.querySelector('.ss-main');
+    hidden(selSecond);
     rmHidden(refs.loader);
     hidden(refs.listCats);
     fetchCatByBreed(e.target.value)
       .then(response => {
         refs.listCats.innerHTML = '';
         refs.listCats.insertAdjacentHTML('beforeend', deployCard(response));
-        rmHidden(refs.selectEl);
+        rmHidden(selSecond);
         rmHidden(refs.listCats);
         hidden(refs.loader);
       })
       .catch(error => {
-        rmHidden(refs.selectEl);
+        rmHidden(selSecond);
         hidden(refs.loader);
         Notiflix.Notify.failure(
           'Oops! Something went wrong! Try reloading the page!',
